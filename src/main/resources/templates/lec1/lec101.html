@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>lec101</title>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="css/myboot.css">
+    <script type="text/javascript" src="/js/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
 </head>
 	<body>
-	<h1>Thymeleaf</h1>
+    <div class="container">
+    <div id="contents">
+    <div class="row">
+    <div class="col">
+	<h1 th:text="${title1}"></h1>
+	<h2>[[${title2}]]</h2>
+    </div>
+    </div><!--.row-->
+    </div><!--#contents-->
+    </div><!--.container-->
+
 	</body>
 </html>
