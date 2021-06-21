@@ -8,7 +8,7 @@
     <script type="text/javascript" src="/js/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="/js/bootstrap.js"></script>
 </head>
-	<body>
+<body>
     <div class="container">
     <div id="contents">
 
@@ -45,15 +45,35 @@
 	</div><!--.col-->
 	</div><!--.row-->
 
+	<div class="row" style="background-color: #F8F8FF">
+    <div class="col">
+	<h3>if文</h3>
+	<p th:if="${product} != null" th:text="productオブジェクトがありますよ"></p>
+	</div><!--.col-->
+	</div><!--.row-->
+
+	<div class="row" style="background-color: #F8F8FF">
+    <div class="col-6">
+	<h3>リンク</h3>
+	<p><a th:href="@{'/'}">top</a></p>
+	</div><!--.col-->
+
+	<div class="col-6">
+	<h3>ユーティリティオブジェクト</h3>
+	<p th:text="${#strings.toUpperCase('toupper!!!')}"></p>
+	</div><!--.col-->
+	</div><!--.row-->
+
     <div class="row" style="background-color: #F8F8FF">
     <div class="col">
 	<h3>プロパティ</h3>
 	<p th:text="${msg}"></p>
+	<p th:text="#{lec101.error}"></p>
 	</div><!--.col-->
 	</div><!--.row-->
 
     </div><!--#contents-->
     </div><!--.container-->
 
-	</body>
+</body>
 </html>

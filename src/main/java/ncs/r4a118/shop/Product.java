@@ -1,8 +1,13 @@
 package ncs.r4a118.shop;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 public class Product {
 	private int code;
+	@NotEmpty
 	private String name;
+	@Min(0)
 	private int price;
 	private String unit;
 	private String desc;

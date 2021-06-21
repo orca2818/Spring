@@ -3,8 +3,11 @@ package ncs.r4a118;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ncs.r4a118.shop.Product;
@@ -33,11 +36,28 @@ public class Lec100Cnt {
 
 		//プロパティ
 		model.addAttribute("msg",resource.getString("msg"));
-		return "/lec1/lec101.html";
+		return "/lec1/lec101";
+	}
+
+	@RequestMapping("/lec1/input")
+	public String input(Model model) {
+		model.addAttribute(new Product());
+		return "/lec1/lec102_input";
+	}
+
+	@RequestMapping("/lec1/result")
+	public String result(@Valid Product product, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("errorMessage", "エラー");
+			return "/lec1/lec102_input";
+		}
+		model.addAttribute("product", product);
+		return "/lec1/lec102_result";
 	}
 
 	@RequestMapping("/")
 	public String login() {
-		return "/lec1/kanri_top.html";
+		return "/lec1/kanri_top";
 	}
+
 }
