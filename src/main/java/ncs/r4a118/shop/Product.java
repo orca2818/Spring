@@ -1,9 +1,11 @@
 package ncs.r4a118.shop;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
-public class Product {
+public class Product implements Serializable {
 	private int code;
 	@NotEmpty
 	private String name;
