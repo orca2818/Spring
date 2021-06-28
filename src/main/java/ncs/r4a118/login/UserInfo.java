@@ -16,6 +16,13 @@ public class UserInfo implements Serializable {
 
 	public UserInfo() {}
 
+	public UserInfo(@NotEmpty String name, @NotEmpty String passwd) {
+		super();
+		this.name = name;
+		this.passwd = passwd;
+	}
+
+
 	public int getId() {
 		return id;
 	}

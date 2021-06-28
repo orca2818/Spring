@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>ログイン</title>
@@ -11,30 +11,37 @@
 <body>
     <div class="container">
     <div id="contents">
+
     <div class="row">
-        <div class="col">
-            <div class="card mx-auto mt-5" style="width: 300px;">
-            <div class="card-header">
-                <h4 style="text-align: center;">ログイン</h4>
-            </div>
-            <div class="card-body mx-auto">
-                <form action="#" method="POST">
-                    <div class="form-group">
-                    <label for="name">ユーザ名</label>
-                    <input type="text" class="form-control" id="name" placeholder="UserName" required autofocus>
-                    <label for="password" class="mt-2">パスワード</label>
-                    <input type="password" class="form-control" id="password" placeholder="PassWord" required autofocus>
-                    <div class="form-check my-3">
-                    <input type="checkbox" class="form-check-input" id="remember">
-                    <label for="remember" class="form-check-label">ユーザ名を覚えておく</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary mx-5">ログイン</button>
-                    </div>
-                </form>
-            </div>
-            </div>
+    <div class="col">
+
+    <div class="card mx-auto mt-5" style="width: 300px;">
+    <div class="card-header">
+        <h4 style="text-align: center;">ログイン</h4>
+    </div>
+
+    <div class="card-body mx-auto">
+        <form action="#" th:action="@{/kanri/login}" th:object="${userInfo}">
+        <div class="form-group">
+
+        <label for="name">ユーザ名</label>
+        <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="UserName" required autofocus>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></span>
+
+        <label for="password" class="mt-2">パスワード</label>
+        <input type="password" th:field="*{passwd}" class="form-control" id="password" placeholder="PassWord" required autofocus>
+        <span th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}" style="color: red"></span>
+
+        <button type="submit" class="btn btn-primary mx-5 mt-4">ログイン</button>
+
         </div>
+        </form>
+    </div><!--.card-body-->
+    </div><!--.card-->
+
+    </div><!--.col-->
     </div><!--.row-->
+
     </div><!--#contents-->
     </div><!--.container-->
 </body>
