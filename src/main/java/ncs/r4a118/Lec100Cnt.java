@@ -55,9 +55,4 @@ public class Lec100Cnt {
 		return "/lec1/lec102_result";
 	}
 
-	@RequestMapping("/")
-	public String login() {
-		return "/lec1/kanri_top";
-	}
-
 }
