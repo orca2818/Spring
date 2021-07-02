@@ -8,6 +8,7 @@ public class UserInfo implements Serializable {
 
 	private int id;
 	@NotEmpty
+	//@Length(min = 5,max = 20)
 	private String name;
 	@NotEmpty
 	private String passwd;

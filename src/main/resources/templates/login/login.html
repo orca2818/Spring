@@ -15,19 +15,21 @@
     <div class="row">
     <div class="col">
 
-    <div class="card mx-auto mt-5" style="width: 300px;">
+    <div class="card mx-auto mt-5" style="width: 500px;">
     <div class="card-header">
         <h4 style="text-align: center;">ログイン</h4>
     </div>
 
     <div class="card-body mx-auto">
-        <form action="#" th:action="@{/kanri/login}" th:object="${userInfo}">
+        <form action="#" th:action="@{/kanri/login}" th:object="${userInfo}" th:method="POST">
+		<p th:if="${err}" th:text="${err}" style="color: red"></p>
         <div class="form-group">
-
         <label for="name">ユーザ名</label>
         <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="UserName" required autofocus>
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></span>
+		</div>
 
+		<div class="form-group">
         <label for="password" class="mt-2">パスワード</label>
         <input type="password" th:field="*{passwd}" class="form-control" id="password" placeholder="PassWord" required autofocus>
         <span th:if="${#fields.hasErrors('passwd')}" th:errors="*{passwd}" style="color: red"></span>

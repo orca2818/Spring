@@ -1,5 +1,8 @@
 package ncs.r4a118.shop;
 
+import java.util.Objects;
+
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +18,16 @@ public class ProductControl {
 
 	@Autowired
 	private ProductDBManage manage;
+	@Autowired
+	private HttpSession session;
 
 	@RequestMapping("/select")
 	public String select(Model model) {
+
+		if (Objects.isNull(session.getAttribute("userInfo"))) {
+			return "redirect:http://127.0.0.1:8080";
+		}
+
 		model.addAttribute("title", "Spring boot データベース");
 		model.addAttribute("subTitle", "SelectAll");
 		model.addAttribute("productList", manage.select());
@@ -26,6 +36,12 @@ public class ProductControl {
 
 	@RequestMapping("/insert")
 	public String insert(Model model) {
+
+		if (Objects.isNull(session.getAttribute("userInfo"))) {
+			return "redirect:http://127.0.0.1:8080";
+		}
+
+
 		model.addAttribute("title", "Spring boot データベース");
 		model.addAttribute("subTitle", "Insert Product");
 		model.addAttribute(new Product());
@@ -46,6 +62,11 @@ public class ProductControl {
 
 	@RequestMapping("/search")
 	public String search(Product product, Model model) {
+
+		if (Objects.isNull(session.getAttribute("userInfo"))) {
+			return "redirect:http://127.0.0.1:8080";
+		}
+
 		model.addAttribute("title", "Spring boot データベース");
 		model.addAttribute("subTitle", "Update Product");
 		model.addAttribute(manage.search(product));
@@ -54,6 +75,11 @@ public class ProductControl {
 
 	@RequestMapping(value = "/update", params = "update", method = RequestMethod.POST)
 	public String update(@Valid Product product, BindingResult result, Model model) {
+
+		if (Objects.isNull(session.getAttribute("userInfo"))) {
+			return "redirect:http://127.0.0.1:8080";
+		}
+
 		if (result.hasErrors()) {
 			model.addAttribute("title", "Spring boot データベース");
 			model.addAttribute("subTitle", "Update Product");
@@ -67,6 +93,11 @@ public class ProductControl {
 
 	@RequestMapping(value = "/update", params = "delete", method = RequestMethod.POST)
 	public String update(Product product, Model model) {
+
+		if (Objects.isNull(session.getAttribute("userInfo"))) {
+			return "redirect:http://127.0.0.1:8080";
+		}
+
 		int code = manage.delete(product);
 		model.addAttribute("msg", DBControlMessage(code, product, "削除"));
 		return select(model);
