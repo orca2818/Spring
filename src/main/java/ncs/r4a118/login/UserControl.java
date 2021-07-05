@@ -35,7 +35,7 @@ public class UserControl {
 			//該当のユーザが存在した場合
 			if (!Objects.equals(null, user)) {
 				session.setAttribute("userInfo", user.getName());
-				return "redirect:http://127.0.0.1:8080/product/select";
+				return "redirect:http://127.0.0.1:8080/LecSpring/product/select";
 			}
 			//該当のユーザが存在しない場合
 			model.addAttribute("err", "ユーザ名かパスワードが間違っています");
