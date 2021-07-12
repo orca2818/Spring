@@ -1,7 +1,7 @@
 package ncs.r4a118.shop;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -128,17 +128,9 @@ public class ProductControl {
 
 		//ファイルクラスを使い写真が格納されているディレクトリを取得
 		File directory = new File(PHOTO_DIR);
-		//viewに渡す画像ファイル名のリスト
-		List<String> photoChunk = new ArrayList<String>();
 
-		/*for(String string : dire.list((dir, name) -> name.endsWith(".jpg"))) {
-			photo.add(string);
-		}*/
-
-		//FileNameFilterでフィルタリングしたファイルの名前をリストに追加
-		for(String string : directory.list((dir, name) -> name.matches(".+(jpg|png|jpeg)$"))) {
-			photoChunk.add(string);
-		}
+		//FileNameFilterでフィルタリングしたファイルの名前のリストを作成
+		List<String> photoChunk = Arrays.asList(directory.list((dir, name) -> name.toLowerCase().matches(".+(.jpg|.png|.jpeg)$")));
 
 		model.addAttribute("photoChunk", photoChunk);
 		return "/shop/pro_photo";
