@@ -1,5 +1,8 @@
 package ncs.r4a118.shop;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +23,8 @@ public class ProductControl {
 	private ProductDBManage manage;
 	@Autowired
 	private HttpSession session;
+
+	public static final String PHOTO_DIR = "D:\\R4A118\\R4A118_app\\www\\webshop\\img\\product";
 
 	@RequestMapping("/select")
 	public String select(Model model) {
@@ -109,6 +114,34 @@ public class ProductControl {
 			msg = String.format("商品名「%s」を%sしました", product.getName(), controlString);
 		}
 		return msg;
+	}
+
+	@RequestMapping("/photo")
+	public String photo(Model model) {
+
+		if (Objects.isNull(session.getAttribute("userInfo"))) {
+			return "redirect:http://127.0.0.1:8080";
+		}
+
+		model.addAttribute("title", "Spring boot データベース");
+		model.addAttribute("subTitle", "Photo Gallery");
+
+		//ファイルクラスを使い写真が格納されているディレクトリを取得
+		File directory = new File(PHOTO_DIR);
+		//viewに渡す画像ファイル名のリスト
+		List<String> photoChunk = new ArrayList<String>();
+
+		/*for(String string : dire.list((dir, name) -> name.endsWith(".jpg"))) {
+			photo.add(string);
+		}*/
+
+		//FileNameFilterでフィルタリングしたファイルの名前をリストに追加
+		for(String string : directory.list((dir, name) -> name.matches(".+(jpg|png|jpeg)$"))) {
+			photoChunk.add(string);
+		}
+
+		model.addAttribute("photoChunk", photoChunk);
+		return "/shop/pro_photo";
 	}
 
 }

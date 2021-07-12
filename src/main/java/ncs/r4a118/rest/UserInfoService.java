@@ -13,4 +13,17 @@ public class UserInfoService {
 	public List<UserInfo> findAll() {
 		return repository.findAll();
 	}
+
+	public UserInfo insert(UserInfo userInfo) {
+		return repository.save(userInfo);
+	}
+
+	public void delete(Integer id) {
+		repository.deleteById(id);;
+	}
+
+	public UserInfo update(UserInfo userInfo) {
+		return repository.save(userInfo);
+	}
+
 }
