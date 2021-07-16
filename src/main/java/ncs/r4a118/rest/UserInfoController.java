@@ -30,6 +30,47 @@ public class UserInfoController {
 		return view;
 	}
 
+	@RequestMapping("/view2")
+	private ModelAndView updateView(Model model) {
+		var view = new ModelAndView();
+		view.setViewName("/rest/user_update");
+		model.addAttribute("userList", service.findAll());
+		model.addAttribute(new UserInfo());
+		model.addAttribute("selectedUserInfo", service.findAll().get(0));
+		System.out.println(service.findAll());
+		return view;
+	}
+
+	@GetMapping("/updateView")
+	private ModelAndView updateView(UserInfo userInfo, Model model) {
+		var view = new ModelAndView();
+		view.setViewName("/rest/user_update");
+		model.addAttribute("userList", service.findAll());
+		model.addAttribute(new UserInfo());
+		try {
+			model.addAttribute("selectedUserInfo", service.find(userInfo.getId()));
+		} catch (Exception e) {
+			model.addAttribute("selectedUserInfo", service.findAll().get(0));
+		}
+		System.out.println(service.find(userInfo.getId()));
+		return view;
+	}
+
+	@PutMapping(value = "/user2", params = "update")
+	private List<UserInfo> update2(UserInfo userInfo) {
+		userInfo.setUpdateDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+		service.update(userInfo);
+		System.out.println(userInfo);
+		return service.findAll();
+	}
+
+	@DeleteMapping(value = "/user2", params = "delete")
+	private List<UserInfo> delete2(UserInfo userInfo) {
+		service.delete(userInfo.getId());
+		return service.findAll();
+	}
+
+
 	@GetMapping("/user")
 	private List<UserInfo> findAll() {
 		return service.findAll();

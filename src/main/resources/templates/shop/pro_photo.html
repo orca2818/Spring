@@ -9,15 +9,20 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<script th:src="@{/js/jquery.bsPhotoGallery.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     <script>
     //ギャラリープラグインの初期化
-     $(document).ready(function(){
-       $('ul.first').bsPhotoGallery({
-         "classes" : "col-xl-3 col-lg-2 col-md-4 col-sm-4",
-         "hasModal" : true,
-         "shortText" : false
-       });
-     });
+	$(document).ready(function(){
+		$('ul.first').bsPhotoGallery({
+			"classes" : "col-xl-3 col-lg-2 col-md-4 col-sm-4",
+			"hasModal" : true,
+			"shortText" : false
+		});
+	});
+    //カスタムファイルインプットの初期化
+	$(document).ready(function () {
+		bsCustomFileInput.init()
+	});
     </script>
 </head>
 <body>
@@ -32,7 +37,7 @@
 
 	<form action="#" th:action="@{/product/upload}" th:method="POST" enctype="multipart/form-data">
 	<div class="custom-file">
-	<label for="upload" class="custom-file-label"></label>
+	<label for="upload" class="custom-file-label">ファイル選択</label>
 	<input type="file" name="upload" id="upload" accept="image/*" class="custom-file-input">
 	</div>
 	<button type="submit" class="btn btn-primary my-3">アップロード</button>

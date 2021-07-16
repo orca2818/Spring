@@ -1,7 +1,11 @@
 package ncs.r4a118.shop;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.net.URI;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,8 +27,11 @@ public class PhotoControl {
 			File uploadFile = new File(ProductControl.PHOTO_DIR + "/" + file.getOriginalFilename());
 			byte[] bytes = file.getBytes();
 			//書き込み
+			try(var stream = new BufferedOutputStream(new FileOutputStream(uploadFile))){
+				stream.write(bytes);
+			};
 		} catch (Exception e) {}
 
-		return null;
+		return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/LecSpring/product/photo")).build();
 	}
 }
