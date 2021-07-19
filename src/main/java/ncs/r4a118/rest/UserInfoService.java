@@ -15,7 +15,7 @@ public class UserInfoService {
 	}
 
 	public UserInfo find(Integer id) {
-		return repository.getById(id);
+		return repository.findById(id).get();
 	}
 
 	public UserInfo insert(UserInfo userInfo) {

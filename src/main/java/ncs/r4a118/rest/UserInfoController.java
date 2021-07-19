@@ -58,9 +58,9 @@ public class UserInfoController {
 
 	@PutMapping(value = "/user2", params = "update")
 	private List<UserInfo> update2(UserInfo userInfo) {
+
 		userInfo.setUpdateDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 		service.update(userInfo);
-		System.out.println(userInfo);
 		return service.findAll();
 	}
 

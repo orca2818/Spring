@@ -10,6 +10,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<script th:src="@{/js/jquery.bsPhotoGallery.js}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+	<script th:src="@{/js/photo.js}"></script>
     <script>
     //ギャラリープラグインの初期化
 	$(document).ready(function(){
@@ -36,11 +37,19 @@
 	<h3>写真アップロード</h3>
 
 	<form action="#" th:action="@{/product/upload}" th:method="POST" enctype="multipart/form-data">
-	<div class="custom-file">
-	<label for="upload" class="custom-file-label">ファイル選択</label>
-	<input type="file" name="upload" id="upload" accept="image/*" class="custom-file-input">
+
+	<div class="form-row">
+
+	<div class="form-group col-lg-9 col-md-6">
+	<input type="file" name="upload" id="upload" accept="image/*" class="custom-file custom-file-input">
+	<label for="upload" class="custom-file-label" data-browse="参照">ファイル選択</label>
 	</div>
-	<button type="submit" class="btn btn-primary my-3">アップロード</button>
+
+	<div class="form-group col-3">
+	<button type="submit" class="btn btn-primary">アップロード</button>
+	</div>
+
+	</div>
 	</form>
 
 	</div><!--.col-->
